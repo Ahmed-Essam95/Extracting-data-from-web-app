@@ -19,7 +19,7 @@ hold = WebDriverWait(Robot,30)
 
 
 def spinner() :
-    WebDriverWait(Robot, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "class name of loading icon")))
+    WebDriverWait(Robot, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "CLASS_NAME")))
 
 # Account Lines
 account_lines_k = 0
@@ -28,7 +28,7 @@ account_lines_k = 0
 account_passed = True
 
 # Global Var to be called when i need at the fx
-cst_city = ""
+city = ""
 
 
 # Extra Mile
@@ -54,8 +54,8 @@ def login_page(username,password) :
     hold.until(EC.visibility_of_element_located((By.ID, "password"))).send_keys(password)
     # Press Ok To log in
     hold.until(EC.element_to_be_clickable((By.CLASS_NAME, "Button Standard"))).click()
-    # Press Customers Button
-    hold.until(EC.element_to_be_clickable((By.LINK_TEXT, "Customers Tab"))).click()
+
+    hold.until(EC.element_to_be_clickable((By.LINK_TEXT, "Tab"))).click()
 
 
 
@@ -66,9 +66,9 @@ def full_cycle(account_num):
     try :
         def page_source(acc_num):
             """Enter account number to pass source page"""
-            global cst_city
+            global city
 
-            # Press Search to view source fields
+            # Press Search to view
             hold.until(EC.element_to_be_clickable((By.LINK_TEXT, "Search"))).click()
             # Check New Page Elements visibility
             hold.until(EC.visibility_of_element_located((By.XPATH, "footer")))
@@ -84,11 +84,11 @@ def full_cycle(account_num):
             # Press Search.
             hold.until(EC.element_to_be_clickable((By.ID, "Search Button"))).click()
 
-            # Get Customer City
-            cst_city = hold.until(EC.visibility_of_all_elements_located((By.XPATH, "Path")))[3].text
+            # City
+            ccity = hold.until(EC.visibility_of_all_elements_located((By.XPATH, "Path")))[3].text
 
-            # Pres to enter the account
-            hold.until(EC.element_to_be_clickable((By.CLASS_NAME, "account"))).click()
+            # Press to enter
+            hold.until(EC.element_to_be_clickable((By.CLASS_NAME, "CLASS_NAME"))).click()
 
         # Run Fx of source page
         page_source(account_num)
@@ -96,25 +96,25 @@ def full_cycle(account_num):
 
 
         def home_page():
-            """Fx Of Account Full Loop"""
+            """Fx Full Loop"""
             global account_lines_k
 
             # Check Point To Move Using Footer
             hold.until(EC.visibility_of_element_located((By.XPATH, "footer")))
-            # Check Point To Move Using Promotions Section
+            # Check Point To Move Using Pro Section
             hold.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='class name']//div[@id='id name']//span")))
 
 
             def re_fetch() :
                 """Re-Fetching Home Page For Each Call"""
-                # Check Point To Move / Validation For All Account Dials Before Go
+                # Check Point To Move / Validation Before Go
                 return hold.until(EC.visibility_of_all_elements_located((By.XPATH, "//table[@id='id name']//tbody//tr")))
             re_fetch()
 
 
             # Static Variable/Data.........
-            cst_name = hold.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "name")))[0].text
-            rp_class = hold.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "name")))[8].text[0:8]
+            name = hold.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "name")))[0].text
+            p_class = hold.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "name")))[8].text[0:8]
 
             bc = hold.until(EC.visibility_of_element_located((By.XPATH, "//*[contains(text(),'Postpaid BC')]"))).text[-1]
             dials_k = len(re_fetch())
@@ -127,7 +127,7 @@ def full_cycle(account_num):
 
             def method_lang() :
 
-                """This Method To Get Account Payment Method + Account Arabic"""
+                """This Method To Get rest data"""
 
                 hold.until(EC.element_to_be_clickable((By.ID,"ID Name"))).click()
                 invisibility_overlay()
@@ -150,10 +150,10 @@ def full_cycle(account_num):
             acc_payment_method , acc_language = method_lang()
 
 
-            # call global variable of cst_city
-            global cst_city
+            # call global variable
+            global city
 
-            # Loop Phase (Dial Full Data) As Of Dynamic Data
+            # Loop Phase As Of Dynamic Data
             for one_dial in range(len(re_fetch())) :
                 dial_row = []
                 # re_fetch() the home Page Each Cycle
@@ -177,22 +177,22 @@ def full_cycle(account_num):
 
 
                 dial_row.append(bc)
-                dial_row.append(rp_class)
+                dial_row.append(p_class)
                 dial_row.append(dials_k)
-                dial_row.append(cst_name)
+                dial_row.append(name)
                 dial_row.append(acc_payment_method)
                 dial_row.append(acc_language)
-                dial_row.append(cst_city)
+                dial_row.append(city)
 
 
                 # move_to_inner_page() :
-                WebDriverWait(re_fetch()[one_dial],20).until(EC.element_to_be_clickable((By.XPATH,".//td[3]//a[contains(@class,'class name')]"))).click()
+                WebDriverWait(re_fetch()[one_dial],20).until(EC.element_to_be_clickable((By.XPATH,"XPATH"))).click()
 
                 spinner()
 
                 def ser_num():
-                    """Check Point using serial number"""
-                    return hold.until(EC.visibility_of_all_elements_located((By.XPATH, "//table[@id='id name']//tbody//td")))[1].text
+                    """Check Point using sr num"""
+                    return hold.until(EC.visibility_of_all_elements_located((By.XPATH, "XPATH")))[1].text
                 ser_num()
 
                 # Start To Extracting Inner Page Data
@@ -208,14 +208,14 @@ def full_cycle(account_num):
                 # Return Back TO Previous Page
                 spinner()
                 time.sleep(0.05)
-                step_back = hold.until(EC.element_to_be_clickable((By.XPATH,"//div[@id='id name']//div[@id='id name']//tbody//div[@class='class name']//a")))
+                step_back = hold.until(EC.element_to_be_clickable((By.XPATH,'XPATH']//a")))
                 step_back.click()
 
                 spinner()
                 re_fetch()
                 time.sleep(0.15)
 
-                # Append The Full Dial Data ( One List One Row ) At the Container Per One Account
+                # Append The Full Data
                 account_container.append(dial_row)
 
         # FX Of Home Page
@@ -250,7 +250,7 @@ def full_cycle(account_num):
         # """Re-Fetching Home Page For Each Call"""
         # # Check Point To Move / Validation For All Account Dials Before Go
         # return hold.until(
-        # EC.visibility_of_all_elements_located((By.XPATH, "//table[@id='id name']//tbody//tr")))
+        # EC.visibility_of_all_elements_located((By.XPATH, "XPATH")))
         # re_fetch()
         # spinner()
 

@@ -1,8 +1,8 @@
-# Post Production Test Automation
-This project is a Python Selenium-based automation script that dramatically reduces the time required for validating customer billing data in telecom post-production processes.
+# Task Automation
+This project is a Python Selenium-based automation script that dramatically reduces the time required for validating cst billing data in telecom processes.
 
 ## Overview
-Before automation, the entire process of handling, validating, and extracting customer billing data was done manually. Each dial required checking 22 fields, and with up to 10 dials per account and 400–500 accounts per task, the workload was extremely time-consuming.
+Before automation, the entire process of handling, validating, and extracting cst billing data was done manually. Each dial required checking 22 fields, and with up to 10 dials per account and 400–500 accounts per task, the workload was extremely time-consuming.
 
 After introducing this automated solution using Selenium, the script intelligently interacts with the web-based application to scrape and validate data, reducing manual effort by over 90% and significantly improving accuracy and processing speed.
 
